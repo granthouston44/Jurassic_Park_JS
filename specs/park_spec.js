@@ -50,7 +50,10 @@ describe('Park', function() {
     assert.deepStrictEqual(actual, [dinosaur1]);
   });
 
-  it('should be able to calculate the total number of visitors per day');
+  it('should be able to calculate the total number of visitors per day', function(){
+    actual = park.guestsPerDay();
+    assert.strictEqual(actual, 160);
+  });
 
   it('should be able to calculate the total number of visitors per year');
 
