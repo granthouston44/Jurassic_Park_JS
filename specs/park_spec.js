@@ -65,4 +65,12 @@ describe('Park', function() {
     assert.strictEqual(actual, 321200);
   });
 
+  it('should be able to remove all dinos of a particular species', function(){
+    park.dinosaurs.push(dinosaur1);
+    console.log(park.dinosaurs);
+    park.removeAll('Barny');
+    actual = park.dinosaurs;
+    assert.deepStrictEqual(actual, [dinosaur2,dinosaur3])
+  })
+
 });

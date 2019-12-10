@@ -51,5 +51,12 @@ Park.prototype.revenueOneYear = function () {
   return total;
 };
 
+Park.prototype.removeAll = function (species) {
+  for( const dino of this.dinosaurs){
+    if ( dino.species === species)
+    this.dinosaurs.splice(this.dinosaurs.indexOf(dino),1);
+}
+};
+
 
 module.exports = Park;
