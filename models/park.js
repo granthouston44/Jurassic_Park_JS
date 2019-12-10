@@ -41,5 +41,10 @@ Park.prototype.guestsPerDay = function () {
   return totalGuests;
 };
 
+Park.prototype.guestsPerYear = function () {
+  guestsYear = this.guestsPerDay() * 365;
+  return guestsYear;
+};
+
 
 module.exports = Park;
