@@ -23,5 +23,15 @@ Park.prototype.mostPopularDino = function () {
   return max;
 };
 
+Park.prototype.all = function (species){
+  let dinoSpecies = [];
+  for (const dino of this.dinosaurs){
+    if (dino.species === species){
+      dinoSpecies.push(dino);
+    }
+  }
+  return dinoSpecies;
+};
+
 
 module.exports = Park;

@@ -5,9 +5,9 @@ const Dinosaur = require('../models/dinosaur.js');
 describe('Park', function() {
 
   beforeEach(function () {
-    dinosaur1 = new Dinosaur('Barny', 'carnivore', 50);
+    dinosaur1 = new Dinosaur('Barny', 'herbivore', 50);
     dinosaur2 = new Dinosaur('Godzilla', 'carnivore', 23);
-    dinosaur3 = new Dinosaur('Dino', 'carnivore', 87);
+    dinosaur3 = new Dinosaur('Dino', 'herbivore', 87);
     dinosaur4 = new Dinosaur('Blue', 'carnivore', 29);
 
     park = new Park("Jurassic Park", 5.50, [dinosaur1,dinosaur2,dinosaur3])
@@ -45,7 +45,10 @@ describe('Park', function() {
     assert.strictEqual(actual, dinosaur3.guestsAttractedPerDay)
   });
 
-  it('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function(){
+    actual = park.all('Barny');
+    assert.deepStrictEqual(actual, [dinosaur1]);
+  });
 
   it('should be able to calculate the total number of visitors per day');
 
