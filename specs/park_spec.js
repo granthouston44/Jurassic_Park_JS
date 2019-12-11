@@ -4,6 +4,15 @@ const Dinosaur = require('../models/dinosaur.js');
 
 describe('Park', function() {
 
+
+//always declare here so that the variable isn't global - only want it
+//accessible inside the test
+  let park;
+  let dinosaur1;
+  let dinosaur2;
+  let dinosaur3;
+  let dinosaur4;
+
   beforeEach(function () {
     dinosaur1 = new Dinosaur('Barny', 'herbivore', 50);
     dinosaur2 = new Dinosaur('Godzilla', 'carnivore', 23);
@@ -42,12 +51,13 @@ describe('Park', function() {
 
   it('should be able to find the dinosaur that attracts the most visitors', function(){
     actual = park.mostPopularDino();
-    assert.strictEqual(actual, dinosaur3.guestsAttractedPerDay)
+    assert.strictEqual(actual, dinosaur3)
   });
 
   it('should be able to find all dinosaurs of a particular species', function(){
+    park.addDino(dinosaur1);
     actual = park.all('Barny');
-    assert.deepStrictEqual(actual, [dinosaur1]);
+    assert.deepStrictEqual(actual, [dinosaur1, dinosaur1]);
   });
 
   it('should be able to calculate the total number of visitors per day', function(){
@@ -66,11 +76,19 @@ describe('Park', function() {
   });
 
   it('should be able to remove all dinos of a particular species', function(){
-    park.dinosaurs.push(dinosaur1);
+    park.addDino(dinosaur1);
     console.log(park.dinosaurs);
     park.removeAll('Barny');
+    console.log(park.dinosaurs);
     actual = park.dinosaurs;
     assert.deepStrictEqual(actual, [dinosaur2,dinosaur3])
+  })
+
+  it('should be able to provide an object containing each of the diet types, and the number of dinos in the park of that diet type', function(){
+    park.addDino(dinosaur1);
+    const actual = park.numberOfDinosByDiet();
+    expected = {carnivore: 1, herbivore: 3};
+    assert.deepStrictEqual(actual, expected);
   })
 
 });
